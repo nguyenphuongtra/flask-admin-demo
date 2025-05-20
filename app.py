@@ -20,5 +20,9 @@ admin.add_view(ModelView(User, db.session))
 def index():
     return '<h2>Welcome to Flask Admin!</h2>'
 
+@app.route('/test')
+def test():
+    return "This is a test page!"
+
 if __name__ == '__main__':
     app.run(debug=True)
