@@ -18,7 +18,7 @@ admin.add_view(ModelView(User, db.session))
 
 @app.route('/')
 def index():
-    return '<h2>Welcome to Flask Admin!</h2>'
+    return '<h2>Welcome to Nguyen Phuong Tra</h2>'
 
 @app.route('/test')
 def test():
