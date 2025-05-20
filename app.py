@@ -13,8 +13,14 @@ class User(db.Model):
     username = db.Column(db.String(50))
     email = db.Column(db.String(100))
 
+class Todo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    task = db.Column(db.String(200), nullable=False)
+    is_done = db.Column(db.Boolean, default=False)
+
 admin = Admin(app, name='Admin', template_mode='bootstrap4')
 admin.add_view(ModelView(User, db.session))
+admin.add_view(ModelView(Todo, db.session))
 
 @app.route('/')
 def index():
