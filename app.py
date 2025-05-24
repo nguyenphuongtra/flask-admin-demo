@@ -35,7 +35,7 @@ with app.app_context():
 @app.route('/')
 def index():
     return render_template_string('''
-        <h2>Chào mừng đến với ứng dụng Flask</h2>
+        <h2>Chào mừng đến với ứng dụng Flask Admin</h2>
         <p>Đây là trang chính.</p>
         <a href="{{ url_for('test') }}">Đi đến trang kiểm thử</a>
         <a href="/admin">Đi đến Admin Panel</a>
@@ -44,7 +44,7 @@ def index():
 
 @app.route('/test')
 def test():
-    return "Trang kiểm thử!"
+    return "Trang test!"
 
 
 if __name__ == '__main__':
