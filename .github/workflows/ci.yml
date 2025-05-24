@@ -1,4 +1,4 @@
-name: Flask CI
+name: Flask CI/CD
 
 on:
   push:
@@ -7,23 +7,29 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest flake8
 
-    - name: Run test
-      run: |
-        echo "✅ Dummy test passed"
+      - name: Run tests with pytest
+        run: |
+          pytest tests/
+
+      - name: Run flake8 for code style
+        run: |
+          flake8 app.py config.py tests/
+  
