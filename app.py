@@ -74,5 +74,11 @@ def delete_todo(todo_id):
 def test():
     return "This is a test page!"
 
+# Thêm lệnh CLI để tạo database cho CI
+@app.cli.command("init-db")
+def init_db():
+    db.create_all()
+    print("Đã khởi tạo database.")
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
