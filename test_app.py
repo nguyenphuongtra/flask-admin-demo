@@ -17,13 +17,13 @@ def client():
 def test_index_get(client):
     response = client.get('/')
     assert response.status_code == 200
-    assert "Chào mừng đến với ứng dụng Flask" in response.data.decode('utf-8')
+    assert "Chào mừng đến với ứng dụng Flask Admin" in response.data.decode('utf-8')
 
 
 def test_test_page(client):
     response = client.get('/test')
     assert response.status_code == 200
-    assert "Trang kiểm thử!" in response.data.decode('utf-8')
+    assert "Trang test!" in response.data.decode('utf-8')
 
 
 def test_admin_page_access(client):
