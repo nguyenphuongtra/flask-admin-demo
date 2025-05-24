@@ -16,6 +16,7 @@ class User(db.Model):
     username = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(100), nullable=False)
 
+
 class UserAdmin(ModelView):
     column_list = ('id', 'username', 'email')
     column_searchable_list = ('username', 'email')
@@ -23,24 +24,30 @@ class UserAdmin(ModelView):
     can_view_details = True
     page_size = 10
 
+
 admin = Admin(app, name='Admin Panel', template_mode='bootstrap4')
 admin.add_view(UserAdmin(User, db.session))
 
 with app.app_context():
     db.create_all()
 
+
 @app.route('/')
 def index():
     return render_template_string('''
         <h2>Chào mừng đến với ứng dụng Flask</h2>
         <p>Đây là trang chính.</p>
-        <a href="{{ url_for('test') }}">Đi đến trang kiểm thử</a>||
+        <a href="{{ url_for('test') }}">Đi đến trang kiểm thử</a>
         <a href="/admin">Đi đến Admin Panel</a>
     ''')
+
 
 @app.route('/test')
 def test():
     return "Trang kiểm thử!"
 
+
 if __name__ == '__main__':
     app.run(debug=True)
+
+# [Dòng trống ở cuối file]
